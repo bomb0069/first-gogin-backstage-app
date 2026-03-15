@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: first-gogin-app
-          image: ghcr.io/bomb0069/first-gogin-backstage-app:latest
+          image: ghcr.io/bomb0069/first-gogin-backstage-app:d8054e170a341f2abbc17893427ad5e26b3b5938
           ports:
             - containerPort: 8080
           env:
