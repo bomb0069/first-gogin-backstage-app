@@ -1,7 +1,7 @@
 FROM golang:1.24-alpine AS build
 WORKDIR /app
 COPY go.mod ./
-RUN go mod download
+RUN go mod download && go mod tidy
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o server .
 
