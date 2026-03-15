@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: first-gogin-app
+  namespace: first-gogin-app
+  labels:
+    app: first-gogin-app
+    backstage.io/kubernetes-id: first-gogin-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: first-gogin-app
+  template:
+    metadata:
+      labels:
+        app: first-gogin-app
+        backstage.io/kubernetes-id: first-gogin-app
+    spec:
+      containers:
+        - name: first-gogin-app
+          image: ghcr.io/bomb0069/first-gogin-backstage-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: '8080'
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30

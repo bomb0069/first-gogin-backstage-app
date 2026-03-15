@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: first-gogin-app
+  description: first test nodejs application with gitops
+  annotations:
+    github.com/project-slug: bomb0069/first-gogin-backstage-app
+    backstage.io/kubernetes-id: first-gogin-app
+spec:
+  type: service
+  owner: user:guest
+  lifecycle: experimental
